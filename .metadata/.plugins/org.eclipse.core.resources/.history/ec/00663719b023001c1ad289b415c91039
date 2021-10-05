@@ -1,0 +1,50 @@
+import java.util.Scanner;
+
+
+public class BinaryToDecimal
+{
+	public static void main(String args[])
+	{
+		Scanner input = new Scanner(System.in);
+		
+		System.out.println("Enter 4 digit binary number");
+		
+		String userBinary = input.nextLine();
+		
+		System.out.println(userBinary.length() - 1);
+		
+		System.out.println("The binary number in decimal is " + binaryToDecimal(userBinary));
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
+	public static double binaryToDecimal(String s)
+	{
+		double decimalVal = 0;
+		
+		for (int i = s.length() - 1; i <= 0; i--)
+		{
+			if(s.charAt(i) == '1')
+			{
+				decimalVal = decimalVal + Math.pow(2, i);
+			}
+		}
+		
+		return decimalVal;
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+}

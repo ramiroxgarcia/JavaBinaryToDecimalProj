@@ -1,0 +1,208 @@
+package lab2_;
+
+public class Tester
+{
+ static long perms; // How many permutations did we identify?
+ static int size; // What's the size of the set we're permuting (the first "size" elements of A)
+ static String format = "%-11s %d permutations in %15.10f seconds (%9d permutations / second)\n";
+
+ public static void main(String[] args)
+ {
+ long time; // What time did we start this test?
+ double elapsed; // What was the elapsed time for all repetitions of this test (in seconds)?
+
+ long reps = 10000L; // How many repetitions to run (to average out variation)
+ size = 7; // How large is the set we're permuting?
+
+ long fact = 1; for (int i = size; i > 1; fact *= i--); // compute size!
+ // System.out.println("Size: " + size + " (" + size + "! = " + fact + ")"); // Output size & target count
+
+ perms = 0; // We've not generated any permutations yet
+ time = System.nanoTime(); // mark the start time
+ for (long times = 1; times <= reps; times++) // repeat test, to average out variations in run time
+ {
+ int[] A = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13};
+ switch (size)
+ {
+ case 1: {generate01(A); break;}
+ case 2: {generate02(A); break;}
+ case 3: {generate03(A); break;}
+ case 4: {generate04(A); break;}
+ case 5: {generate05(A); break;}
+ case 6: {generate06(A); break;}
+ case 7: {generate07(A); break;}
+ /*case 8: {generate08(A); break;}
+ case 9: {generate09(A); break;}
+ case 10: {generate10(A); break;}
+ case 11: {generate11(A); break;}*/
+ }
+ }
+ elapsed = ((System.nanoTime() - time) / 1000000000.0 / reps);
+ System.out.printf(format, "Naive for", perms/reps, elapsed, (long)(perms/elapsed/reps));
+ } // end main
+
+ public static void generate01(int[] A)
+ {
+  perms++;
+ // System.out.println(A[0]);
+ }
+ 
+ public static void generate02(int[] A)
+ {
+  for (int i = 0; i < 2; i++)
+  for (int j = 0; j < 2; j++)
+  if (i != j)
+  {
+  perms++;
+ // System.out.println(A[i] + " " + A[j]);
+  }
+ }
+ 
+ public static void generate03(int[] A)
+ {
+  for (int i = 0; i < 3; i++)
+  for (int j = 0; j < 3; j++)
+  for (int k = 0; k < 3; k++)
+  if (i != j && i != k &&
+  j != k)
+  {
+  perms++;
+  //System.out.println(A[i] + " " + A[j] + " " + A[k]);
+  }
+ }
+ 
+ public static void generate04(int[] A)
+ {
+  for (int i = 0; i < 4; i++)
+  for (int j = 0; j < 4; j++)
+  for (int k = 0; k < 4; k++)
+  for (int l = 0; l < 4; l++)
+  if (i != j && i != k && i != l &&
+  j != k && j != l &&
+  k != l)
+  {
+  perms++;
+  // System.out.println(A[i] + " " + A[j] + " " + A[k] + " " + A[l]);
+  }
+ }
+ 
+ public static void generate05(int[] A)
+ {
+  for (int i = 0; i < 5; i++)
+	  for (int j = 0; j < 5; j++)
+		  for (int k = 0; k < 5; k++)
+			  for (int l = 0; l < 5; l++)
+				  for (int m = 0; m< 5; m++)
+					  if (i != j && i != k && i != l && i != m &&
+					  j != k && j != l && j != m &&
+					  k != l && k != m && l != m)
+					  {
+						  perms++;
+						 // System.out.println(A[i] + " " + A[j] + " " + A[k] + " " + A[l] + " " + A[m]);
+					  }
+ }
+ 
+ public static void generate06(int[] A)
+ {
+  for (int i = 0; i < 6; i++)
+	  for (int j = 0; j < 6; j++)
+		  for (int k = 0; k < 6; k++)
+			  for (int l = 0; l < 6; l++)
+				  for (int m = 0; m< 6; m++)
+					  for (int n = 0; n < 6; n++)
+						  if (i != j && i != k && i != l && i != m && i != n &&
+						  j != k && j != l && j != m && j != n &&
+						  k != l && k != m && k != n && l != m && l != n && m != n)
+						  {
+							  perms++;
+							 // System.out.println(A[i] + " " + A[j] + " " + A[k] + " " + 
+							 // A[l] + " " + A[m] + " " + A[n]);
+						  }
+ }
+ 
+ public static void generate07(int[] A)
+ {
+  for (int i = 0; i < 7; i++)
+	  for (int j = 0; j < 7; j++)
+		  for (int k = 0; k < 7; k++)
+			  for (int l = 0; l < 7; l++)
+				  for (int m = 0; m< 7; m++)
+					  for (int n = 0; n < 7; n++)
+						  for ( int o = 0; n < 7; o++)
+							  if (i != j && i != k && i != l && i != m && i != n && i != o && 
+							  j != k && j != l && j != m && j != n && j != o &&
+							  k != l && k != m && k != n && k != o && l != m && l != n && l != o
+							  && m != n && m != o && n != o)
+							  {
+								  perms++;
+								  //System.out.println(A[i] + " " + A[j] + " " + A[k] + " " + 
+								  // A[l] + " " + A[m] + " " + A[n] + " " + A[o]);
+							  }
+ }
+ 
+ 
+ public static void generate01a(int[] A)
+ {
+				
+	perms++;
+				
+ }
+ 
+ 
+ 
+ public static void generate02a(int[] A)
+ {
+	 for (int i = 0; i < 2; i++)
+		 for (int j = 0; j < 2; j++)
+			 if (i != j)
+				{
+					perms++;
+				}
+ }
+ 
+ 
+ public static void generate03a(int[] A)
+ {
+	 for (int i = 0; i < 3; i++)
+		 for (int j = 0; j < 3; j++)
+			 if (i != j)
+				 for (int k = 0; k < 3; k++)
+						if (i != k && j != k)
+						{
+							perms++;
+						}
+ }
+ 
+ public static void generate04a(int[] A)
+ {
+	 for (int i = 0; i < 4; i++)
+		 for (int j = 0; j < 4; j++)
+			 if (i != j)
+				 for (int k = 0; k < 4; k++)
+					 if (i != k && j != k)
+						 for (int l = 0; l < 4; l++)
+							 if (i != l && j != l && k != l)
+							 {
+								perms++;
+							 }
+ }
+ 
+ public static void generate05a(int[] A)
+ {
+	 for (int i = 0; i < 5; i++)
+		 for (int j = 0; j < 5; j++)
+			 if (i != j)
+				 for (int k = 0; k < 5; k++)
+					 if (i != k && j != k)
+						 for (int l = 0; l < 5; l++)
+							 if (i != l && j != l && k != l)
+							 for (int m = 0; m < 5; m++)
+								 if (i != m && j != m && k != m && l != m)
+								 {
+									perms++;
+								 }
+ }
+
+
+ 
+} // end class
